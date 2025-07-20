@@ -682,7 +682,7 @@ useEffect(() => {
   }
 
   return (
-    <Card className="max-w-4xl mx-auto bg-[var(--theme-card)] border-none rounded-xl shadow-2xl p-8 backdrop-blur-sm">
+    <Card className="max-w-4xl my-6 mx-auto bg-[var(--theme-card)] border-none rounded-xl shadow-2xl p-8 backdrop-blur-sm">
       <MinimalAnimatedBackground currentStep={currentStep} />
     
       <CardContent>

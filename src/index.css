@@ -107,12 +107,12 @@ a:hover {
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  background: linear-gradient(to bottom right, var(--theme-background), var(--theme-secondary));
+  /* or use a solid color: background: var(--theme-background); */
   min-height: 100vh;
   font-family: 'Cairo', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 h1 {

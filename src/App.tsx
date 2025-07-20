@@ -7,8 +7,12 @@ import AssessmentPage from "./pages/AssessmentPage";
 import HistoricalAssessmentsPage from "./pages/HistoricalAssessmentsPage";
 import ComplianceProfile from "./pages/ComplianceProfile";
 import DetailedReports from "./pages/DetailedReports";
+import { SettingsSidebar } from "./components/sidebar/SettingsSidebar";
+import { useSelector } from "react-redux";
+import type { RootState } from "./store/store";
 
 function App() {
+    const { isOpenSidebar} = useSelector((state: RootState) => state.companies);
   return (
     <BrowserRouter>
       <div className="min-h-screen w-full bg-gray-200 flex flex-col">
@@ -36,6 +40,7 @@ function App() {
             </Routes>
           </div>
         </main>
+          {isOpenSidebar &&  <SettingsSidebar  />}
       </div>
     </BrowserRouter>
   );

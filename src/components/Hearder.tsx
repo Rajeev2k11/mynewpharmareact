@@ -1,7 +1,13 @@
 import React from "react";
 import svgPaths from "../import/svg-ai243ivdh2";
+import { setIsOpenSidebar } from "@/features/companies/companiesSlice";
+import { useDispatch } from "react-redux";
+import type { AppDispatch } from "@/store/store";
 
-const Header: React.FC = () => (
+const Header: React.FC = () =>{ 
+  const dispatch = useDispatch<AppDispatch>();
+  return(
+
   <header className="sticky top-0 z-50 w-full flex items-center justify-between px-6 py-4 bg-white border-b border-gray-200">
     <div className="flex items-center space-x-3">
       {/* Left Logo (Auryis) */}
@@ -49,7 +55,9 @@ const Header: React.FC = () => (
 
     <div className="flex items-center space-x-4">
       {/* Settings Button */}
-      <button className="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none">
+      <button  
+      onClick={() => dispatch(setIsOpenSidebar(true))}
+      style={{ backgroundColor: "#fff" }} className="flex items-center gap-2 rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
@@ -74,6 +82,6 @@ const Header: React.FC = () => (
       </span>
     </div>
   </header>
-);
+)};
 
 export default Header;

@@ -18,13 +18,15 @@ interface CompaniesState {
   companies: Company[];
   loading: boolean;
   error: string | null;
-    isUpdateModeRedux: boolean;}
+    isUpdateModeRedux: boolean;
+  isOpenSidebar:boolean}
 
 const initialState: CompaniesState = {
   companies: [],
   loading: false,
   error: null,
   isUpdateModeRedux: JSON.parse(localStorage.getItem('isUpdateModeRedux') || 'false'),
+  isOpenSidebar:false
 };
 
 // Async thunk for fetching companies
@@ -53,7 +55,9 @@ const companiesSlice = createSlice({
     setIsUpdateModeRedux: (state, action) => {
       state.isUpdateModeRedux = action.payload;
       localStorage.setItem('isUpdateModeRedux', JSON.stringify(action.payload));
-    }
+    },
+    setIsOpenSidebar:(state, action) => {
+      state.isOpenSidebar = action.payload;}
   },
   extraReducers: (builder) => {
     builder
@@ -73,4 +77,4 @@ const companiesSlice = createSlice({
 });
 
 export default companiesSlice.reducer;
-export const { setIsUpdateModeRedux } = companiesSlice.actions;
+export const { setIsUpdateModeRedux,setIsOpenSidebar } = companiesSlice.actions;

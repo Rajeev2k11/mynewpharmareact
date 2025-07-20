@@ -2,7 +2,7 @@ import AssessmentConfiguration from '@/components/assessment-rules/AssessmentCon
 import AssessmentRulesConfig from '@/components/assessment-rules/AssessmentRulesConfig'
 import AssessmentRulesList from '@/components/assessment-rules/AssessmentRulesList'
 import StatsCards from '@/components/assessment-rules/StatsCards'
-import SettingsSidebar from '@/components/SettingsSidebar'
+
 
 const AssessmentPage = () => {
   return (
@@ -25,7 +25,7 @@ const AssessmentPage = () => {
         <AssessmentConfiguration />
       </div>
     </div>
-    <SettingsSidebar open={true} onClose={()=>console.log("close")}/>
+   
     </>
   )
 }
