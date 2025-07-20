@@ -21,7 +21,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState, AppDispatch } from "@/store/store";
 import { fetchCompanies, setIsUpdateModeRedux } from "@/features/companies/companiesSlice";
-import { fetchBusinessLocations } from "@/features/companies/businessLocationsSlice";
+import { fetchBusinessLocations, bulkUpsertBusinessLocations } from "@/features/companies/businessLocationsSlice";
 import { fetchBusinessFunctions } from "@/features/companies/businessFunctionsSlice";
 
 // --- Interfaces ---
@@ -214,6 +214,7 @@ useEffect(() => {
     //       "city": "string",
     //       "companyCityCombination": "string"
     //     }
+    //   ]
     });
   }
   // eslint-disable-next-line
@@ -479,10 +480,30 @@ useEffect(() => {
   };
 
   // --- Navigation handlers ---
-  const handleNext = () => {
+  const handleNext = async () => {
     // If not valid, show all errors for current step 1
     if (currentStep === 1) {
       setStep1Errors(getStep1Errors());
+    }
+    // Handle LocationsStep (step 2) POST
+    if (currentStep === 2 && isStepValid(currentStep)) {
+      // Prepare payload for bulk upsert (remove businessFunctions if present)
+      const upsertPayload = formData.locations.map(({ id, locationName, address, city, state, zipCode, isEditing, ...rest }) => ({
+        id,
+        companyId: companyToEdit?.id || "", // <-- add this line
+        businessLocationCompanyName: locationName,
+        businessAddress: address,
+        city,
+        state,
+        zipCode,
+        isActive: true,
+        ...rest,
+      }));
+      try {
+        await dispatch(bulkUpsertBusinessLocations(upsertPayload));
+      } catch (e) {
+        // Optionally handle error
+      }
     }
     if (currentStep < totalSteps && isStepValid(currentStep)) {
       setIsAnimating(true);
@@ -614,13 +635,13 @@ useEffect(() => {
           </Button>
           <div className="flex items-center gap-2">
             {currentStep < totalSteps ? (
-              <Button
+              <button
                 type="button"
                 onClick={handleNext}
-                className="flex items-center gap-2 bg-[var(--theme-primary)] hover:bg-[var(--theme-primary)]/90 text-white"
+                className="flex items-center  gap-2 bg-[var(--theme-primary)] hover:bg-[var(--theme-primary)]/90 text-white"
               >
                 Next
-              </Button>
+              </button>
             ) : (
               <Button
                 type="button"
@@ -661,18 +682,9 @@ useEffect(() => {
   }
 
   return (
-    <Card className="max-w-2xl mx-auto shadow-lg">
+    <Card className="max-w-4xl mx-auto bg-[var(--theme-card)] border-none rounded-xl shadow-2xl p-8 backdrop-blur-sm">
       <MinimalAnimatedBackground currentStep={currentStep} />
-      <CardHeader>
-        <CardTitle className="text-xl font-semibold">
-          {isUpdateMode ? "Update Company Setup" : "Initial Company Setup"}
-        </CardTitle>
-        <CardDescription className="text-[var(--theme-muted-foreground)] text-red-600">
-          {isUpdateMode
-            ? "Update your pharmaceutical company profile and operational structure"
-            : "Let's set up your pharmaceutical company profile and operational structure"}
-        </CardDescription>
-      </CardHeader>
+    
       <CardContent>
         <div>{modalContent}</div>
       </CardContent>

@@ -55,9 +55,9 @@ export default function LocationsStep({
   businessLocations = [],
 }: LocationsStepProps) {
   return (
-    <div className="space-y-6">
-      <Card>
-        <CardContent className="p-6 space-y-6">
+    <div className="space-y-6 ">
+      <div>
+        <CardContent className="p-6 space-y-6 border-none">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center">
@@ -276,7 +276,7 @@ export default function LocationsStep({
             </div>
           )}
         </CardContent>
-      </Card>
+      </div>
     </div>
   );
 }

@@ -17,7 +17,7 @@ export default function ReviewStep({ formData, isUpdateMode }) {
   return (
     <div className="space-y-6">
       {/* Enhanced Review Header */}
-      <Card>
+      <Card className="border-none bg-gradient-to-r from-[#ffffff] to-[#f5effc]">
         <CardContent className="p-6">
           <div className="flex items-center gap-4 mb-6">
             <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center shadow-lg">
@@ -74,7 +74,7 @@ export default function ReviewStep({ formData, isUpdateMode }) {
       </Card>
 
       {/* Company Information Summary */}
-      <Card>
+      <Card className="border-none bg-gradient-to-r from-[#ffffff] to-[#f5effc]">
         <CardContent className="p-6">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-lg flex items-center justify-center">
@@ -140,7 +140,7 @@ export default function ReviewStep({ formData, isUpdateMode }) {
       </Card>
 
       {/* Locations Summary */}
-      <Card>
+      <Card className="border-none bg-gradient-to-r from-[#ffffff] to-[#f5effc]">
         <CardContent className="p-6">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
@@ -189,8 +189,8 @@ export default function ReviewStep({ formData, isUpdateMode }) {
       </Card>
 
       {/* Business Functions Summary */}
-      <Card>
-        <CardContent className="p-6">
+      <Card className="border-none bg-gradient-to-r from-[#ffffff] to-[#f5effc] p-8">
+        <CardContent className="p-6 ">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center">

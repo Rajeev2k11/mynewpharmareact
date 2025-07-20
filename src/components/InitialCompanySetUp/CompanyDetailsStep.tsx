@@ -36,7 +36,8 @@ export default function CompanyDetailsStep({
     options: string[] = [],
     IconComponent?: React.ElementType,
     placeholder = "",
-    required = false
+    required = false,
+ 
   ) => {
     const hasValue = formData[field] && (formData[field] || "").length > 0;
 
@@ -93,7 +94,7 @@ export default function CompanyDetailsStep({
 
     return (
       <div className="space-y-2 group relative z-10">
-        <Label className="text-sm flex items-center gap-2">
+        <Label className="text-sm flex items-center gap-2 text-[var(--theme-primary)]">
           {IconComponent && (
             <div className={`p-1 rounded transition-all duration-300
               ${hasValue ? "bg-[var(--theme-primary)]/10 text-[var(--theme-primary)]" : "bg-[var(--theme-secondary)] text-[var(--theme-muted-foreground)]"}
@@ -109,7 +110,7 @@ export default function CompanyDetailsStep({
             value={formData[field] || ""}
             onChange={e => onInputChange(field, e.target.value)}
             placeholder={placeholder || `Enter ${label.toLowerCase()}`}
-            className="h-9 sm:h-10 border"
+            className="h-9 sm:h-10 border text-[var(--theme-primary)]"
           />
         )}
         {type === "textarea" && (
@@ -118,28 +119,33 @@ export default function CompanyDetailsStep({
             onChange={e => onInputChange(field, e.target.value)}
             placeholder={placeholder || `Enter ${label.toLowerCase()}`}
             rows={2}
-            className="resize-none min-h-[40px] sm:min-h-[60px]"
+            className="resize-none min-h-[40px] sm:min-h-[60px] "
           />
         )}
-     {type === "select" && options.length > 0 && (
+     {type === "select"  &&(
+
+   
   <Select
-    value={formData[field] || ""}
-    onValueChange={value => onInputChange(field, value)}
+  value={formData[field] || ""}
+  onValueChange={value => onInputChange(field, value)}
+>
+  <SelectTrigger
+    className={`h-9 sm:h-10 border-[var(--theme-border)] text-white rounded-lg px-3 focus:border-[var(--theme-primary)] focus:ring-2 focus:ring-[var(--theme-primary)] transition-colors `}
   >
-    <SelectTrigger
-      className={`h-9 sm:h-10 border border-[var(--theme-border)] bg-[var(--input-background)] rounded-lg px-3 focus:border-[var(--theme-primary)] focus:ring-2 focus:ring-[var(--theme-primary)] transition-colors`}
-    >
-      <SelectValue placeholder={`Select ${label}`} />
-    </SelectTrigger>
-   <SelectContent className="max-h-48 sm:max-h-60 overflow-y-auto bg-[var(--input-background)]">
-      {options.map(option => (
-        <SelectItem key={option} value={option}>
-          {option}
-        </SelectItem>
-      ))}
-    </SelectContent>
-  </Select>
-)}
+    <SelectValue placeholder={`Select ${label}`} />
+  </SelectTrigger>
+  <SelectContent
+    className={`max-h-56 overflow-y-auto bg-white rounded-xl shadow-lg border border-[var(--theme-border)] `}
+    
+  >
+    {options.map(option => (
+      <SelectItem key={option} value={option}>
+        {option}
+      </SelectItem>
+    ))}
+  </SelectContent>
+</Select>)}
+    
         {errors[field] && (
           <div className="text-xs text-red-500 mt-1">{errors[field]}</div>
         )}
@@ -166,7 +172,8 @@ export default function CompanyDetailsStep({
               [],
               Building2,
               "Auryis Pharmaceuticals Ltd.",
-              true
+              true,
+              "text-[var(--theme-primary)]"
             )}
             {renderFormField(
               "countryRegion",

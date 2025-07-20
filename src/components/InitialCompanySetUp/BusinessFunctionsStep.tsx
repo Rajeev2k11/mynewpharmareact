@@ -56,8 +56,8 @@ export default function BusinessFunctionsStep({
 
   return (
     <div className="space-y-6">
-      <Card>
-        <CardContent className="p-6 space-y-6">
+      <Card className="border-none">
+        <CardContent className="p-6 space-y-6 border-none">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center">
