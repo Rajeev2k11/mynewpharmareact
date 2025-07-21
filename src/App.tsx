@@ -10,12 +10,13 @@ import DetailedReports from "./pages/DetailedReports";
 import { SettingsSidebar } from "./components/sidebar/SettingsSidebar";
 import { useSelector } from "react-redux";
 import type { RootState } from "./store/store";
+import { UserRoleManagement } from "./pages/UserRoleManagement";
 
 function App() {
     const { isOpenSidebar} = useSelector((state: RootState) => state.companies);
   return (
     <BrowserRouter>
-      <div className="min-h-screen w-full bg-gray-200 flex flex-col">
+      <div className="min-h-screen w-full bg-gradient-to-br from-[var(--theme-background)] via-[var(--theme-secondary)] to-[var(--theme-accent)] flex flex-col">
         {/* Main Header + Tabs – sticks to top, always same width */}
         <header className="w-full shadow-sm backdrop-blur z-50">
           <div className="w-full max-w-full mx-auto ">
@@ -34,6 +35,7 @@ function App() {
               <Route path="/compliance-profile" element={<ComplianceProfile />} />
               <Route path="/detailed-reports" element={<DetailedReports />} />
               <Route path="/initialCompanySetup" element={<InitialCompanySetupModal />} />
+              <Route path="/userRoleManagement" element={<UserRoleManagement />} />
               <Route path="/about" element={<About />} />
               {/* Default redirect to assessment-rules (optional) */}
               {/* <Route path="*" element={<Navigate to="/assessment-rules" />} /> */}

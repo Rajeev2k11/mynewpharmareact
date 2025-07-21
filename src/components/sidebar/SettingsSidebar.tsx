@@ -28,7 +28,7 @@ export function SettingsSidebar() {
     { id: 'change-company-parameters', icon: Edit3, label: 'Change Company Parameters', description: 'Modify existing company configuration',path:'initialCompanySetup' },
     { id: 'regulation-refresh-parameters', icon: RefreshCw, label: 'Regulation Refresh Parameters', description: 'Update regulatory compliance settings',path:'initialCompanySetup' },
     { id: 'assessment-parameters', icon: Brain, label: 'Assessment Parameters (LLM etc.)', description: 'Configure AI and assessment settings',path:'initialCompanySetup' },
-    { id: 'user-management', icon: Users, label: 'User & Role Management', description: 'Manage users, roles, and permissions',path:'initialCompanySetup' },
+    { id: 'user-management', icon: Users, label: 'User & Role Management', description: 'Manage users, roles, and permissions',path:'userRoleManagement' },
     { id: 'menu-management', icon: Menu, label: 'Menu Management', description: 'Configure navigation menus and access',path:'initialCompanySetup' },
     { id: 'user-profile', icon: User, label: 'User Profile', description: 'Manage your personal profile settings',path:'initialCompanySetup' },
     { id: 'colour-palette', icon: Palette, label: 'Colour Palette', description: 'Customize application theme and colors',path:'initialCompanySetup' },
