@@ -191,19 +191,20 @@ export const UserLogsTab: React.FC<Props> = ({ logs }) => {
                 ) : 'Pick a date range'}
               </Button>
             </PopoverTrigger>
-            <PopoverContent  className="w-auto p-0" align="start">
+            <PopoverContent  className="w-auto p-0 bg-white" align="start">
               <CalendarComponent
               
                 mode="range"
                 selected={dateRange as DateRange}
                 onSelect={(range) => setDateRange(range || {})}
                 numberOfMonths={2}
+                
               />
             </PopoverContent>
           </Popover>
 
-          <Select value={itemsPerPage.toString()} onValueChange={val => setItemsPerPage(+val)}>
-            <SelectTrigger style={{backgroundColor:"#ffffff"}} className="w-full sm:w-[140px]">
+          <Select  value={itemsPerPage.toString()} onValueChange={val => setItemsPerPage(+val)}>
+            <SelectTrigger  className="w-full sm:w-[140px]">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>

@@ -19,7 +19,7 @@ export default function TabsNav() {
             end={tab.path === '/'}
             className={({ isActive }) => `
               px-2 lg:px-3 xl:px-6 py-3 xl:py-4 h-auto rounded-xl transition-all duration-300 relative group
-              min-w-[120px] lg:min-w-[140px] xl:min-w-[180px] flex-col items-center flex
+              min-w-[120px] bg-[#ECECF0] lg:min-w-[140px] xl:min-w-[180px] flex-col items-center flex
               ${isActive 
                 ? 'bg-[#4f45b6] text-white shadow-xl transform scale-105' 
                 : 'text-black hover:bg-gray-100 hover:shadow-md hover:scale-102'

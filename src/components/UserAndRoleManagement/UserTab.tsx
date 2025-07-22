@@ -52,12 +52,12 @@ export const UserTab: React.FC<Props> = ({ users, roles }) => {
   };
 
   return (
-    <Card className="space-y-6 bg-white">
+    <Card className="space-y-6 bg-white border-none shadow-lg">
       <CardHeader>
         <div className="flex items-center justify-between">
           <CardTitle className="flex items-center gap-2">
             <Users className="w-5 h-5 text-[var(--theme-primary)]" />
-            User Management
+            <p className='text-md font-light'>User Management</p> 
           </CardTitle>
           <Dialog open={isCreateUserOpen} onOpenChange={setIsCreateUserOpen}>
             <DialogTrigger asChild>

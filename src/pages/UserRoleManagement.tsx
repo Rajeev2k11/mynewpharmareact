@@ -28,14 +28,14 @@ export function UserRoleManagement() {
 
       <div className="overflow-x-auto">
         <Tabs value={activeTab} onValueChange={(val) => setActiveTab(val as 'users' | 'roles' | 'logs')} className="w-full bg-muted min-w-[340px]">
-          <TabsList  className=" flex bg-[#ececf0] rounded-full p-1 gap-2 shadow-sm border border-[#e0e0e0]">
+          <TabsList  className=" flex bg-[#ececf0] rounded-full p-1 gap-2 shadow-sm ">
             <TabsTrigger
-              style={{backgroundColor:'#ffffff'}}
+             
               value="users"
               className={`flex items-center gap-2 px-7 py-2 rounded-full font-medium transition-all duration-200 text-base
                 ${activeTab === 'users'
-                  ? 'bg-[#ffffff] border-4 border-[#bdbdbd] shadow text-black'
-                  : 'border-4 border-transparent text-black'}
+                  ? 'bg-[#ffffff] shadow text-black'
+                  : ''}
               `}
             >
               <Users className="w-5 h-5" />
@@ -43,12 +43,12 @@ export function UserRoleManagement() {
               <span className="ml-1 text-base font-semibold">({userCount})</span>
             </TabsTrigger>
             <TabsTrigger
-              style={{backgroundColor:'#ffffff'}}
+             
               value="roles"
               className={`flex items-center gap-2 px-7 py-2 rounded-full font-medium transition-all duration-200 text-base
                 ${activeTab === 'roles'
-                  ? 'bg-[#ffffff] border-4 border-[#bdbdbd] shadow text-black'
-                  : 'border-4 border-transparent text-black'}
+                  ? 'bg-[#ffffff] shadow text-black'
+                  : ''}
               `}
             >
               <Shield className="w-5 h-5" />
@@ -56,12 +56,12 @@ export function UserRoleManagement() {
               <span className="ml-1 text-base font-semibold">({roleCount})</span>
             </TabsTrigger>
             <TabsTrigger
-              style={{backgroundColor:'#ffffff'}}
+              
               value="logs"
               className={`flex items-center gap-2 px-7 py-2 rounded-full font-medium transition-all duration-200 text-base
                 ${activeTab === 'logs'
-                  ? 'bg-[#ffffff] border-4 border-[#bdbdbd] shadow text-black'
-                  : 'border-4 border-transparent text-black'}
+                  ? 'bg-[#ffffff] shadow text-black'
+                  : ''}
               `}
             >
               <FileText className="w-5 h-5" />
