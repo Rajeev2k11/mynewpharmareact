@@ -26,23 +26,26 @@ import type { Role, User } from './types';
 import { Input } from '../ui/input';
 import { useDispatch, useSelector } from 'react-redux';
 import type { RootState, AppDispatch } from '@/store/store';
-import { fetchTableUsers } from '@/features/companies/usersSlice';
+import { fetchTableUsers } from '@/features/userRoleManagement/usersSlice';
 
 
 interface Props {
   roles: Role[];
+  users?: User[];
   onEditUser?: (user: User) => void;
   onToggleStatus?: (user: User) => void;
   onManageRoles?: (user: User) => void;
 }
 
-export const UserTable: React.FC<Props> = ({ roles, onEditUser, onToggleStatus, onManageRoles }) => {
+export const UserTable: React.FC<Props> = ({ users: propUsers, onEditUser, onToggleStatus, onManageRoles }) => {
   const dispatch = useDispatch<AppDispatch>();
-  const { users, loading, error } = useSelector((state: RootState) => state.users);
+  const { users: reduxUsers } = useSelector((state: RootState) => state.users);
 
   useEffect(() => {
     dispatch(fetchTableUsers());
   }, [dispatch]);
+
+  const users = propUsers || reduxUsers;
 console.log("users",users)
   const getStatusIcon = (status: string) => {
     switch (status) {
@@ -120,7 +123,7 @@ console.log("users",users)
                   </div>
                   <div>
                     <div className="font-medium">{user.firstName} {user.lastName}</div>
-                    <div className="text-sm text-[var(--theme-muted-foreground)]">{user.email}</div>
+                    <div className="text-sm text-[var(--theme-muted-foreground)]">{user.emailId}</div>
                   </div>
                 </div>
               </TableCell>
@@ -139,9 +142,9 @@ console.log("users",users)
               <TableCell>{user.department}</TableCell>
               <TableCell>
                 <div className="flex items-center gap-2">
-                  {getStatusIcon(user.isActive)}
-                  <Badge className={getStatusBadge(user.isActive)}>
-                    {user.isActive}
+                  {getStatusIcon(user.isActive ? 'active' : 'inactive')}
+                  <Badge className={getStatusBadge(user.isActive ? 'active' : 'inactive')}>
+                    {user.isActive ? 'active' : 'inactive'}
                   </Badge>
                 </div>
               </TableCell>

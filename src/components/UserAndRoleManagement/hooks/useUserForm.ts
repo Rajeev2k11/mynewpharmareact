@@ -1,60 +1,79 @@
 import { useState } from 'react';
-import type { Role, User } from '../types';
 import { toast } from 'sonner';
+import { useDispatch } from 'react-redux';
+import { createUser } from '../../../features/userRoleManagement/usersSlice';
+import type { AppDispatch } from '../../../store/store';
 
-interface UseUserFormParams {
-  roles: Role[];
-  onAddUser: (user: User) => void;
-}
-
-export const useUserForm = ({ roles, onAddUser }: UseUserFormParams) => {
+export const useUserForm = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const [isCreateUserOpen, setIsCreateUserOpen] = useState(false);
 
   const [userForm, setUserForm] = useState({
     firstName: '',
+    middleName: '',
     lastName: '',
-    email: '',
-    phone: '',
+    emailId: '',
+    phoneNumber: '',
     role: '',
     department: '',
-    status: 'active' as const,
-    sendInvite: true,
-    assignedRoles: [] as string[]
+    isActive: true,
+    isDeleted: false,
+    azureId: '',
+    userRolesDto: [],
+    lastLogoutTime: '',
   });
 
   const handleUserFormChange = <K extends keyof typeof userForm>(field: K, value: typeof userForm[K]) => {
     setUserForm((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleCreateUser = () => {
-    if (!userForm.firstName || !userForm.lastName || !userForm.email || !userForm.role) {
+  const handleCreateUser = async () => {
+    if (!userForm.firstName || !userForm.lastName || !userForm.emailId || !userForm.role) {
       toast.error('Please fill in all required fields.');
       return;
     }
 
-    const newUser: User = {
+    const payload = {
       id: Date.now().toString(),
-      ...userForm,
-      createdAt: new Date().toISOString().split('T')[0],
-      permissions: roles.find(r => r.id === userForm.role)?.permissions || []
+      firstName: userForm.firstName,
+      middleName: userForm.middleName || '',
+      lastName: userForm.lastName,
+      phoneNumber: userForm.phoneNumber,
+      emailId: userForm.emailId,
+      department: userForm.department,
+      isActive: true,
+      isDeleted: false,
+      azureId: '',
+      logInUserId: userForm.role || '',
+      logInUserRoleId: userForm.role || '',
+      roleIds: [userForm.role],
     };
 
-    onAddUser(newUser);
-    toast.success('User created successfully');
-
-    setUserForm({
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: '',
-      role: '',
-      department: '',
-      status: 'active',
-      sendInvite: true,
-      assignedRoles: []
-    });
-
-    setIsCreateUserOpen(false);
+    try {
+      await dispatch(createUser(payload)).unwrap();
+      toast.success('User created successfully');
+      setUserForm({
+        firstName: '',
+        middleName: '',
+        lastName: '',
+        emailId: '',
+        phoneNumber: '',
+        role: '',
+        department: '',
+        isActive: true,
+        isDeleted: false,
+        azureId: '',
+        userRolesDto: [],
+        lastLogoutTime: '',
+      });
+      setIsCreateUserOpen(false);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        toast.error(error.message || 'Failed to create user');
+      } else {
+        toast.error('Failed to create user');
+      }
+    }
   };
 
   return {

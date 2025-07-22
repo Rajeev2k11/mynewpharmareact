@@ -2,7 +2,8 @@ import { configureStore } from '@reduxjs/toolkit';
 import companiesReducer from '../features/companies/companiesSlice';
 import businessLocationsReducer from '../features/companies/businessLocationsSlice';
 import businessFunctionsReducer from '../features/companies/businessFunctionsSlice';
-import usersReducer from '../features/companies/usersSlice';
+import usersReducer from '../features/userRoleManagement/usersSlice';
+import userRolesReducer from '../features/userRoleManagement/userRolesSlice';
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     businessLocations: businessLocationsReducer,
     businessFunctions: businessFunctionsReducer,
     users: usersReducer,
+    userRoles: userRolesReducer,
     // ...other reducers
   },
 });

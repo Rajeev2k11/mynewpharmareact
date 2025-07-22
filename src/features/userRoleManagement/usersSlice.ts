@@ -47,8 +47,48 @@ export const fetchTableUsers = createAsyncThunk(
       } else {
         return rejectWithValue(response.data.message || 'Unknown error');
       }
-    } catch (error: any) {
-      return rejectWithValue(error.message || 'Network error');
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        return rejectWithValue(error.message || 'Network error');
+      }
+      return rejectWithValue('Network error');
+    }
+  }
+);
+
+export const createUser = createAsyncThunk(
+  'users/createUser',
+  async (userPayload: {
+    id: string;
+    firstName: string;
+    middleName: string;
+    lastName: string;
+    phoneNumber: string;
+    emailId: string;
+    department: string;
+    isActive: boolean;
+    isDeleted: boolean;
+    azureId: string;
+    logInUserId: string;
+    logInUserRoleId: string;
+    roleIds: string[];
+  }, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        'https://cenexawebapi-bghsh2dzc4ftawfk.westus-01.azurewebsites.net/api/users',
+        userPayload,
+        { headers: { 'Content-Type': 'application/json' } }
+      );
+      if (response.data.isSuccess) {
+        return response.data.data;
+      } else {
+        return rejectWithValue(response.data.message || 'Unknown error');
+      }
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        return rejectWithValue(error.message || 'Network error');
+      }
+      return rejectWithValue('Network error');
     }
   }
 );

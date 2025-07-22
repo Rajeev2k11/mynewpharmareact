@@ -21,9 +21,11 @@ function App() {
         <header className="w-full shadow-sm backdrop-blur z-50">
           <div className="w-full max-w-full mx-auto ">
             <Header />
-            <div className="mt-3 px-2">
-              <TabsNav />
-            </div>
+            {window.location.pathname === "/" && (
+              <div className="mt-3 px-2" >
+                <TabsNav /> 
+              </div>
+            )}
           </div>
         </header>
         {/* Main Content */}

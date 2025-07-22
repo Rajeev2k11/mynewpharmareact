@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import { X, Settings, Building2, Edit3, RefreshCw, Brain, User, Palette, LogOut, Layout, Users, Shield, Menu } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+// import React from 'react';
+import { X, Settings, Building2, Edit3, RefreshCw, Brain, User, Palette, LogOut, Layout, Users, Menu } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Switch } from '@/components/ui/switch';
 import { useDispatch, useSelector } from 'react-redux';
@@ -36,10 +35,7 @@ export function SettingsSidebar() {
  const handleSettingClick = (settingId: string, path:string) => {
    
     navigate(`/${path}`); // Navigate to the specific setting page
-    if (settingId === 'initial-company-setup') {
-
-      dispatch(setIsOpenSidebar(false)); // Close settings sidebar when opening company setup modal
-    }
+    dispatch(setIsOpenSidebar(false)); // Always close settings sidebar when navigating
   };
   return (
     <>
